@@ -1,0 +1,40 @@
+import java.util.*;
+public class longestSubstringWithAtMostTwoChar {
+    String s;
+    int si=0,ei=0, dCount=0;
+    int[] arr = new int[128]; 
+    public longestSubstringWithAtMostTwoChar(String s){
+        this.s=s;
+    }
+    public static void main(String[] args){
+        Scanner scn = new Scanner(System.in);
+       String s =scn.next();
+
+       solution ob =new  solution(s);
+       int ans = ob.LongestSubStrWith2Char(s);
+       System.out.println(ans);
+    }
+    
+}
+class solution extends longestSubstringWithAtMostTwoChar {
+    
+    public solution(String s){
+        super(s);
+    }
+    public int LongestSubStrWith2Char(String s){
+        int len =0;
+        while(ei<s.length()){
+            if(arr[s.charAt(ei++)]++==0)dCount++;
+
+            while(dCount>2){
+                if(arr[s.charAt(si++)]--==1)dCount--;
+            }
+
+             len = Math.max(ei-si,len);
+        }
+        return len;
+        
+    }
+
+
+}
